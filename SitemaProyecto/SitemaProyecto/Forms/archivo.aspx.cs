@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,13 @@ namespace SitemaProyecto.Forms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.Page.IsPostBack)  //Si es la primera vez que se carga
+            {
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("..\\Index.aspx");
+                }
+            }
         }
 
         protected void UploadButton_Click(object sender, EventArgs e)
@@ -22,7 +29,6 @@ namespace SitemaProyecto.Forms
                 if (fileExtension.ToLower() != ".pdf" && fileExtension.ToLower() != ".PDF")
                 {
                     Label1.Text = "Sólo archivo con pdf";
-
                 }
                 else
                 {
@@ -39,6 +45,14 @@ namespace SitemaProyecto.Forms
 
                         FileUpload1.SaveAs(ass);
                         Label1.Text = "Archivo Subido";
+
+                        Clases.ValoresGlobales VGlobal = new Clases.ValoresGlobales();
+                        DataSet DatRegistros = new DataSet();
+                        string Sentencia;
+                        //Rellena Zona
+                        Sentencia = "UPDATE `login`.`registro` SET  `pdf` = '2' WHERE `registro`.`id` = " + Session["idRegistro"].ToString().Trim();
+                        string resultado = VGlobal.BDatos.Escritura(Sentencia);
+                        UploadButton.Enabled = false;
                     }
                 }
             }

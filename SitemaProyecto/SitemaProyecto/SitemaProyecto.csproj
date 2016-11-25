@@ -137,7 +137,10 @@
     <Content Include="stacktable\package.json" />
     <Content Include="stacktable\README.md" />
     <Content Include="stacktable\stacktable.jquery.json" />
-    <Content Include="Archivos\egel.pdf" />
+    <Content Include="Archivos\FundamentosInv.pdf" />
+    <Content Include="Archivos\Hardware.pdf" />
+    <Content Include="Archivos\Redes.pdf" />
+    <Content Include="Archivos\Software.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

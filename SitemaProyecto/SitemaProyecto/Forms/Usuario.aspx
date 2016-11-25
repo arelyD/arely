@@ -97,7 +97,7 @@
                             <div class="row">
                                 <div class="col-md-3">categoria</div>
                                 <div class="col-md-9">
-                                     <asp:DropDownList ID="DropDownList2" runat="server" CssClass="dropdown form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="DropDownList2" runat="server" CssClass="dropdown form-control"></asp:DropDownList>
                                 </div>
                             </div>
                             <br />
@@ -114,14 +114,21 @@
                     </asp:UpdatePanel>
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server" Visible="False">
                         <ContentTemplate>
-                            <embed src="../Archivos/egel.pdf" type="application/pdf" width="800" height="600"></embed>
+                            <%--<embed src="../Archivos/egel.pdf" type="application/pdf" width="800" height="600"></embed>--%>
+                            <iframe runat="server" id="myPDF" src="~/Archivos/Hardware.pdf" width="800px" height="600px"></iframe>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server" Visible="False">
                         <ContentTemplate>
                             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                             <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                            <p>Resultado <asp:Label ID="Label3" runat="server" Text=""></asp:Label></p>
+                            <p>Resultado
+                                <br />
+                                <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+                            </p>
+                            <p>
+                                <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+                            </p>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <asp:UpdatePanel ID="UpdatePanel5" runat="server" Visible="False">

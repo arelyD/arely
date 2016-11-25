@@ -32,7 +32,7 @@
                                     <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" TextMode="MultiLine"  Rows="10" Enabled="false" Font-Overline="False"></asp:TextBox>
                                 </div>
                             <div class="col-md-3">
-                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown form-control" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" style="left: 0px; top: 0px">
+                                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="dropdown form-control" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" style="left: 0px; top: 0px" AutoPostBack="True">
                                     <asp:ListItem Value="-1">-- seleccione una R--</asp:ListItem>
                                     <asp:ListItem Value="1">cumple</asp:ListItem>
                                     <asp:ListItem Value="0">no cumple</asp:ListItem>

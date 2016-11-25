@@ -4,14 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title></title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <h4>Select a file to upload:</h4>
-
+            <h4>Selecione el archivo</h4>
+               <h2 class="text-danger">Importante El nombre del Archivo tiene que ser igual que su nombre de usuario</h2>
             <asp:FileUpload ID="FileUpload1"
                 runat="server"></asp:FileUpload>
 
@@ -33,5 +37,7 @@
             </asp:Label>
         </div>
     </form>
+    <script src="../Scripts/jquery-3.1.1.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
 </body>
 </html>

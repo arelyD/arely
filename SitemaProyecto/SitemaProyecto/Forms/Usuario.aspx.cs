@@ -16,7 +16,7 @@ namespace SitemaProyecto.Forms
             {
                 if (Session["Usuario"] == null)
                 {
-                    Response.Redirect("..\\default.aspx");
+                    Response.Redirect("..\\Index.aspx");
                 }
                 else
                 {//SELECT `datos` FROM `registros` WHERE id=3
@@ -24,7 +24,7 @@ namespace SitemaProyecto.Forms
                     DataSet DatRegistros = new DataSet();
                     string Sentencia;
                     //Rellena Zona
-                    Sentencia = "SELECT `id`, `idusuario`, `datos`, `pdf`, `calificacion`FROM `registro` WHERE `idusuario`=" + Session["id"].ToString().Trim();
+                    Sentencia = "SELECT `registro`.`id`, `idusuario`, `datos`, `pdf`, `calificacion`, categoria.Descricion  ,`caleficacion2` FROM `registro` inner join categoria on (idcategoria=categoria.id) WHERE `idusuario`=" + Session["id"].ToString().Trim();
                     DatRegistros = VGlobal.BDatos.Lectura(Sentencia);
                     try
                     {
@@ -36,23 +36,30 @@ namespace SitemaProyecto.Forms
                                 LinkButton3.Enabled = false;
                                 LinkButton5.Enabled = false;
                                 string id = DatRegistros.Tables[0].Rows[0]["id"].ToString().Trim();
+                                Session["idRegistro"] = id;
                                 string idusuario = DatRegistros.Tables[0].Rows[0]["idusuario"].ToString().Trim();
                                 string datos = DatRegistros.Tables[0].Rows[0]["datos"].ToString().Trim();
                                 string pdf = DatRegistros.Tables[0].Rows[0]["pdf"].ToString().Trim();
                                 string califacion = DatRegistros.Tables[0].Rows[0]["calificacion"].ToString().Trim();
-                                //EdoUsuTex = DataUsu.Tables[0].Rows[0]["Descripcion"].ToString().Trim();
-                                //EdoUsuTex = DataUsu.Tables[0].Rows[0]["Descripcion"].ToString().Trim();
+                                string caleficacion2 = DatRegistros.Tables[0].Rows[0]["caleficacion2"].ToString().Trim();
+                                myPDF.Attributes.Add("src", "~/Archivos/" + DatRegistros.Tables[0].Rows[0]["Descricion"].ToString().Trim() + ".pdf");
                                 if (datos=="0")
                                 {
                                     Button1.Visible = true;
                                 }
-                                if (pdf != "0")
+                                if (pdf == "1")
                                 {
                                     LinkButton5.Enabled = true;
                                 }
                                 if (califacion != "0")
                                 {
                                     LinkButton3.Enabled = true;
+                                    Label3.Text = "Resultado 1 "+ califacion;
+                                    if (caleficacion2 != "0")
+                                    {
+                                        Label4.Text = "Resultado 2 " + caleficacion2;
+
+                                    }
                                 }
                                 if (datos != "0")
                                 {
@@ -80,7 +87,6 @@ namespace SitemaProyecto.Forms
                         {
                             if (DatRegistros.Tables[0].Rows.Count > 0)
                             {
-
                                 //EdoUsuTex = DataUsu.Tables[0].Rows[0]["Descripcion"].ToString().Trim();
                                 ////lista de proyectos con registros
                                 DropDownList1.Items.Clear(); //Borra elementos seleccionados 

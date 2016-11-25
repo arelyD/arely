@@ -17,7 +17,7 @@ namespace SitemaProyecto.Forms
             {
                 if (Session["Usuario"] == null)
                 {
-                    Response.Redirect("..\\default.aspx");
+                    Response.Redirect("..\\Index.aspx");
                 }
                 ConfigInicial();
             }
@@ -29,7 +29,7 @@ namespace SitemaProyecto.Forms
             DataSet DatRegistros = new DataSet();
             string Sentencia;
             //Rellena Zona
-            Sentencia = "SELECT * FROM registro;";
+            Sentencia = "SELECT * FROM registro where "+ "calificacion = 0";
             DatRegistros = VGlobal.BDatos.Lectura(Sentencia);
             try
             {
@@ -60,8 +60,6 @@ namespace SitemaProyecto.Forms
             }
             catch (Exception)
             {
-
-                throw;
             }
         }
 
@@ -78,7 +76,7 @@ namespace SitemaProyecto.Forms
             DataSet DatRegistros = new DataSet();
             string Sentencia;
             //Rellena Zona
-            Sentencia = "SELECT `titulo`,`resumen`,`autores`,`institucion`,`semestre`,`email`,	carreras.tipocarrera	 FROM registro inner join carreras on registro.tipocarrera = carreras.id  WHERE registro.`id`=" + Session["Proyecto"].ToString().Trim();
+            Sentencia = "SELECT `titulo`,`resumen`,`autores`,`institucion`,`semestre`,`email`, carreras.tipocarrera FROM registro inner join carreras on registro.tipocarrera = carreras.id  WHERE registro.`id`=" + Session["Proyecto"].ToString().Trim();
             DatRegistros = VGlobal.BDatos.Lectura(Sentencia);
             try
             {
@@ -102,35 +100,6 @@ namespace SitemaProyecto.Forms
             catch (Exception)
             {
             }
-            /////////////////////////////////////////////////////////////////////////////////////////////////////
-            //Sentencia = "SELECT * FROM registro inner join carreras on registro.tipocarrera = carreras.id  WHERE registro.`id`=" + Session["Proyecto"].ToString().Trim();
-            //DatRegistros = VGlobal.BDatos.Lectura(Sentencia);
-            //try
-            //{
-            //    if (DatRegistros != null)
-            //    {
-            //        if (DatRegistros.Tables[0].Rows.Count > 0)
-            //        {
-            //            Session["idusuario"] = DatRegistros.Tables[0].Rows[0]["idusuario"].ToString().Trim();
-            //            Session["face"] = DatRegistros.Tables[0].Rows[0]["idusuario"].ToString().Trim();
-
-            //            Response.Redirect("Cuestionario.aspx");
-            //        }
-            //        else
-            //        {
-            //            //// lsita de proyectos basios
-            //        }
-            //    }
-            //    else
-            //    {
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //}
-
-
-
             UpdatePanel2.Update();
         }
 
